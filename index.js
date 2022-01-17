@@ -62,7 +62,7 @@ function movdeUp() {
       navBar.length - 1
     ].style.transform = `translateY(0px)`;
 
-    isSeleted = true;
+    isSeleted = false;
     return;
   } else {
     let isRemoved = false;
@@ -90,3 +90,59 @@ function movdeUp() {
     }
   }
 }
+
+//
+// function showCoords(event) {
+//   var x = event.clientX;
+//   var coor = "X coords: " + x + ", Y coords: " + y;
+//   console.log(coor);
+// }
+//
+// const NavBar = document.getElementById("row-container-1");
+// const mainContainer1 = document.getElementById("main-container");
+// const mainContainer2 = document.getElementById("main-container");
+
+// // NavBar.addEventListener("mouseenter", function () {
+// showCoords();
+
+// console.log("scrolled");
+// // });
+// function showCoords(event) {
+//   var x = event.clientX;
+//   var y = event.clientY;
+//   var coor = "X coords: " + x + ", Y coords: " + y;
+//   console.log(coor);
+
+//   console.log(y);
+//   if (true) {
+//     if (y > 400 && y < 410) {
+//       console.log("scroll");
+//       mainContainer1.scrollIntoView({
+//         behavior: "smooth",
+//         block: "end",
+//         inline: "nearest",
+//       });
+//     }
+//   }
+//   // if (y > 720 && y < 730) {
+//   //   console.log("scroll");
+//   //   mainContainer1.scrollIntoView({
+//   //     behavior: "smooth",
+//   //     block: "end",
+//   //     inline: "nearest",
+//   //   });
+//   // }
+// }
+const Wrapper = document.getElementById("wrapper");
+Wrapper.addEventListener("scroll", () => {
+  let NavBar = document.getElementById("row-container-1");
+  let carPosition = NavBar.getBoundingClientRect().top;
+  let screenPosition = window.innerHeight / 1;
+  if (carPosition < screenPosition) {
+    window.alert("scroll down");
+    moveDown();
+  } else {
+    window.alert("yellow");
+    // movdeUp();
+  }
+});

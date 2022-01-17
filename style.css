@@ -55,7 +55,7 @@ a:hover {
   width: 85%;
   height: 100%;
   padding: 100px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .row-container {
