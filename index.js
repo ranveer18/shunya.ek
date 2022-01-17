@@ -6,6 +6,8 @@ const mainContainerTransform = document.querySelectorAll(".main-container");
 // console.log(mainContainer);
 console.log(navBar);
 let isSeleted = false;
+let scrollPosition = 0;
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowDown") {
     moveDown();
@@ -24,7 +26,8 @@ function moveDown() {
     navBar[0].classList.add("show-box");
 
     mainContainer[0].style.gap = "100px";
-    mainContainerTransform[0].style.transform = `translateY(0px)`;
+    // mainContainerTransform[0].style.transform = `translateY(0px)`;
+    scrollPosition = 0;
     isSeleted = true;
     return;
   } else {
@@ -44,7 +47,9 @@ function moveDown() {
         //   index * -250
         // }px)`;
         mainContainerTransform[0].parentElement.scrollBy(0, 200);
+        scrollPosition += 200;
 
+        // console.log(scrollPosition);
         // console.log(index);
         navBar[index + 1].classList.add("show-box");
         mainContainer[index + 1].style.gap = "100px";
@@ -58,16 +63,19 @@ function moveDown() {
 function moveUp() {
   if (!isSeleted) {
     navBar[navBar.length - 1].classList.add("show-box");
-    mainContainer[navBar.length - 1].style.gap = "0px";
+    mainContainer[navBar.length - 1].style.gap = "100px";
     // mainContainerTransform[
     //   navBar.length - 1
     // ].style.transform = `translateY(0px)`;
     mainContainerTransform[0].parentElement.scrollTo(
       0,
-      navBar.length - 1 - 200
+      (navBar.length - 1) * 200
     );
+    console.log(navBar.length);
 
-    isSeleted = false;
+    isSeleted = true;
+    scrollPosition = (navBar.length - 1) * 200;
+
     return;
   } else {
     let isRemoved = false;
@@ -86,7 +94,8 @@ function moveUp() {
         //   index * -50
         // }px)`;
         mainContainerTransform[0].parentElement.scrollBy(0, -200);
-
+        scrollPosition -= 200;
+        // console.log(scrollPosition);
         // console.log(index);
         navBar[index - 1].classList.add("show-box");
         mainContainer[index - 1].style.gap = "100px";
@@ -140,17 +149,41 @@ function moveUp() {
 //   // }
 // }
 const Wrapper = document.getElementById("wrapper");
-Wrapper.addEventListener("scroll", () => {
-  let NavBar = document.getElementById("row-container-1");
-  let currentPosition = NavBar.getBoundingClientRect().top;
-  let screenPosition = window.innerHeight / 20;
-  console.log("screen", screenPosition);
-  console.log("current", currentPosition);
-  if (currentPosition < screenPosition) {
-    // moveDown();
-    // window.alert("scroll down");
-  } else {
-    // movdeUp();
-  }
-  // console.log(e);
-});
+// if (Wrapper.scrollTop === 0) {
+//   console.log("move");
+//   moveDown();
+// }
+// const container = document.querySelector(". container");
+// console.log(Wrapper.scrollTop);
+// container.scrollLeft;
+
+// document.addEventListener("scroll", (e) => {
+//   // window.onscroll = function (e) {
+//   // print "false" if direction is down and "true" if up
+//   console.log(this.oldScroll > this.scrollY);
+//   this.oldScroll = this.scrollY;
+//   // };
+// });
+// let oldScroll = 0;
+
+// Wrapper.onscroll = function (e) {
+//   // print "false" if direction is down and "true" if up
+//   console.log(oldScroll > this.scrollY);
+//   oldScroll = this.scrollY;
+//   console.log(Wrapper.scrollY);
+// };
+
+// console.log(document.documentElement.scrollTop);
+// var lastScrollTop = 0;
+
+// // element should be replaced with the actual target element on which you have applied scroll, use window in case of no target element.
+// Wrapper.addEventListener(
+//   "scroll",
+//   function () {
+//     // or window.addEventListener("scroll"....
+//     if ((this.scrollY = 200)) {
+//       console.log("scroll");
+//     }
+//   },
+//   false
+// );
