@@ -13,7 +13,7 @@ document.addEventListener("keydown", (e) => {
 
   //
   if (e.key === "ArrowUp") {
-    movdeUp();
+    moveUp();
   }
 });
 
@@ -40,9 +40,10 @@ function moveDown() {
         // console.log(navBar[index]);
         navBar[index].classList.remove("show-box");
         mainContainer[index].style.gap = "0px";
-        mainContainerTransform[0].style.transform = `translateY(${
-          index * -250
-        }px)`;
+        // mainContainerTransform[0].style.transform = `translateY(${
+        //   index * -250
+        // }px)`;
+        mainContainerTransform[0].parentElement.scrollBy(0, 200);
 
         // console.log(index);
         navBar[index + 1].classList.add("show-box");
@@ -54,13 +55,17 @@ function moveDown() {
   }
 }
 
-function movdeUp() {
+function moveUp() {
   if (!isSeleted) {
     navBar[navBar.length - 1].classList.add("show-box");
-    mainContainer[navBar.length - 1].style.gap = "00px";
-    mainContainerTransform[
-      navBar.length - 1
-    ].style.transform = `translateY(0px)`;
+    mainContainer[navBar.length - 1].style.gap = "0px";
+    // mainContainerTransform[
+    //   navBar.length - 1
+    // ].style.transform = `translateY(0px)`;
+    mainContainerTransform[0].parentElement.scrollTo(
+      0,
+      navBar.length - 1 - 200
+    );
 
     isSeleted = false;
     return;
@@ -77,9 +82,10 @@ function movdeUp() {
         // console.log(navBar[index]);
         navBar[index].classList.remove("show-box");
         mainContainer[index].style.gap = "0px";
-        mainContainerTransform[0].style.transform = `translateY(${
-          index * -50
-        }px)`;
+        // mainContainerTransform[0].style.transform = `translateY(${
+        //   index * -50
+        // }px)`;
+        mainContainerTransform[0].parentElement.scrollBy(0, -200);
 
         // console.log(index);
         navBar[index - 1].classList.add("show-box");
@@ -141,7 +147,7 @@ Wrapper.addEventListener("scroll", () => {
   console.log("screen", screenPosition);
   console.log("current", currentPosition);
   if (currentPosition < screenPosition) {
-    moveDown();
+    // moveDown();
     // window.alert("scroll down");
   } else {
     // movdeUp();
