@@ -136,13 +136,15 @@ function movdeUp() {
 const Wrapper = document.getElementById("wrapper");
 Wrapper.addEventListener("scroll", () => {
   let NavBar = document.getElementById("row-container-1");
-  let carPosition = NavBar.getBoundingClientRect().top;
-  let screenPosition = window.innerHeight / 1;
-  if (carPosition < screenPosition) {
-    window.alert("scroll down");
+  let currentPosition = NavBar.getBoundingClientRect().top;
+  let screenPosition = window.innerHeight / 20;
+  console.log("screen", screenPosition);
+  console.log("current", currentPosition);
+  if (currentPosition < screenPosition) {
     moveDown();
+    // window.alert("scroll down");
   } else {
-    window.alert("yellow");
     // movdeUp();
   }
+  // console.log(e);
 });
