@@ -57,7 +57,13 @@ a:hover {
   padding: 100px;
   overflow: scroll;
 }
-
+.wrapper::-webkit-scrollbar {
+  display: none;
+}
+.wrapper {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 .row-container {
   margin: 100px;
   height: 200px;
